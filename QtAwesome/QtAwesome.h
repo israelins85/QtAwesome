@@ -829,6 +829,8 @@ public:
     explicit QtAwesome(QObject *parent = 0);
     virtual ~QtAwesome();
 
+    static QtAwesome* instance();
+
     void init( const QString& fontname );
     bool initFontAwesome();
 
@@ -857,6 +859,8 @@ private:
     QVariantMap defaultOptions_;                           ///< The default icon options
     QtAwesomeIconPainter* fontIconPainter_;                ///< A special painter fo painting codepoints
 };
+
+#define qtAwesome QtAwesome::instance()
 
 
 //---------------------------------------------------------------------------------------

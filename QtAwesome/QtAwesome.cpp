@@ -151,6 +151,16 @@ QtAwesome::~QtAwesome()
     qDeleteAll(painterMap_);
 }
 
+#include <QCoreApplication>
+QtAwesome* QtAwesome::instance()
+{
+    static QtAwesome* l_instance = NULL;
+    if (l_instance) return l_instance;
+    l_instance = new QtAwesome(qApp);
+    l_instance->initFontAwesome();
+    return l_instance;
+}
+
 /// initializes the QtAwesome icon factory with the given fontname
 void QtAwesome::init(const QString& fontname)
 {
