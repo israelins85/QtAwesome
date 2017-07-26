@@ -6,7 +6,11 @@ SOURCES += $$PWD/QtAwesome.cpp \
 
 HEADERS += $$PWD/QtAwesome.h \   
     $$PWD/QtAwesomeAnim.h
-    
-RESOURCES += $$PWD/QtAwesome.qrc
 
-
+ios {
+    fontAwesomeFiles.files = $$PWD/fonts/fontawesome-4.7.0.ttf
+    fontAwesomeFiles.path = fonts
+    QMAKE_BUNDLE_DATA += fontAwesomeFiles
+} else {
+    RESOURCES += $$PWD/QtAwesome.qrc
+}

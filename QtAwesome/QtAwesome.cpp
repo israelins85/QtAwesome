@@ -962,6 +962,10 @@ bool QtAwesome::initFontAwesome( )
     // only load font-awesome once
     if( fontAwesomeFontId < 0 ) {
 
+        // load the font file
+#ifdef Q_OS_IOS
+        QString fontPath = "fonts/fontawesome-4.7.0.ttf";
+#else
         // The macro below internally calls "qInitResources_QtAwesome()". this initializes
         // the resource system. For a .pri project this isn't required, but when building and using a
         // static library the resource need to initialized first.
@@ -970,8 +974,10 @@ bool QtAwesome::initFontAwesome( )
         // (More info about this subject:  http://qt-project.org/wiki/QtResources)
         Q_INIT_RESOURCE(QtAwesome);
 
-        // load the font file
-        QFile res(":/fonts/fontawesome-4.7.0.ttf");
+        QString fontPath = ":/fonts/fontawesome-4.7.0.ttf";
+#endif
+
+        QFile res(fontPath);
         if(!res.open(QIODevice::ReadOnly)) {
             qDebug() << "Font awesome font could not be loaded!";
             return false;
